@@ -1,22 +1,16 @@
-from datetime import datetime
-
-
 from src.masks import get_mask_card_number, get_mask_account
 
 
-def mask_account_card(number: str) -> str:
+def mask_account_card(number_card: str) -> str:
     """Функция для маскировки счета/карты"""
-    if len(number.split()[-1]) == 16:
-        new_number = get_mask_card_number(number.split()[-1])
-        result = f"{number[:16]}{new_number}"
-    elif len(number.split()[-1]) == 20:
-        new_number = get_mask_account(number.split()[-1])
-        result = f"{number[:20]}{new_number}"
-    return result
+    if "Счет" in number_card:
+        return f"Счет {get_mask_account(number_card)}"
+    else:
+        card = get_mask_card_number(number_card[-16:])
+        new_card = number_card.replace(number_card[-16:], card)
+    return new_card
 
 
 def get_date(date: str) -> str:
     """Функция, принимающая строку с датой и переводящая ее в формат ДД.ММ.ГГГГ"""
-    return f"{date[8:18]}.{date[5:7]}.{date[8:4]}"
-
-
+    return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
