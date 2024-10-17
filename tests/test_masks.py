@@ -10,10 +10,10 @@ import pytest
         ("2504706942057145", "2504 70** **** 7145"),
     ],
 )
-@pytest.fixture
-def test_get_mask_card_number() -> str:
+
+def test_get_mask_card_number(number, masks) -> str:
     assert get_mask_card_number("7000792289606361") == "7000 79** **** 6361"
-    assert get_mask_card_number("7000792289606361456783456") == "7000 79** **** 3456"
+    assert get_mask_card_number("7000792289606361456783456") == "Неверно введенный номер карты"
 
 
 def test_get_mask_account() -> str:
