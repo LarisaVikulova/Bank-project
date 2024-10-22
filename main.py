@@ -1,8 +1,8 @@
-from src.widget import mask_account_card, get_date
-
 from src.processing import filter_by_state, sort_by_date
 
-from src.generators import filter_by_currency, card_number_generator, transaction_descriptions
+from src.widget import mask_account_card, get_date
+
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 print(
     filter_by_state(
